@@ -58,7 +58,7 @@ async def switch_mode(callback_query: CallbackQuery):
             if only_rights.get(info) is not None:
                 only_rights.pop(info)
         is_anonymous = permissions['is_anonymous']
-        if (not permissions.is_chat_owner) and permissions['can_be_edited']:
+        if (not permissions.is_chat_creator()) and permissions['can_be_edited']:
             await bot.promote_chat_member(chat_id=chat_id, user_id=user_id, is_anonymous=not is_anonymous, **only_rights)
             await callback_query.answer('Status changed successfully')
         else:
